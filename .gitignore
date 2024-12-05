@@ -1,2 +1,6 @@
 .env/
 sql/
+schedule.txt
+composer.json
+composer.lock
+vendor/
