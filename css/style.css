@@ -1,57 +1,101 @@
 body {
-    font-family: "Kaisei Decol", serif; /* kaisei-decol-regular */
+    font-family: "Kaisei Decol", serif;
+    /* kaisei-decol-regular */
     font-weight: 400;
     font-style: normal;
     display: flex;
     flex-direction: column;
     min-height: 95vh;
-  }
+}
+
 /* ヘッダー */
-header{
-    background-color:#FFF323;
+header {
+    background-color: #FFF323;
     height: 50px;
 }
-.site-header{
-    font-size: 1.8rem; /*LAB18だから！気付いてくれた人はサイコー！その１*/
+
+.site-header {
+    font-size: 1.8rem;
+    /*LAB18だから！気付いてくれた人はサイコー！その１*/
     display: flex;
     justify-content: space-around;
     text-align: center;
 }
 
 /* メイン */
-main{
-    flex:1;
+main {
+    flex: 1;
     text-align: center;
     margin: auto;
-  }
-  .menu-container{
+}
+
+.menu-container {
     margin-top: 50px;
     font-size: 1.2rem;
-  }
+}
+
+/* ポップアップ用 */
+#popup-wrapper {
+    background-color: rgba(0, 0, 0, .5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    z-index: 9999;
+    /* 追加 */
+}
+
+#popup-inside {
+    text-align: center;
+    width: 100%;
+    max-width: 300px;
+    background: white;
+    margin: 10% auto;
+    padding: 20px;
+    position: relative;
+}
+
+#close {
+    position: absolute;
+    top: 0;
+    right: 5px;
+    cursor: pointer;
+}
 
 /* フッター */
-footer{
+footer {
     /* position:fixed; */
-    bottom:0;
+    bottom: 0;
     display: flex;
     justify-content: center;
 }
 
 
-  /* 全体に適用 */
-  a{
+/* 全体に適用 */
+a {
     text-decoration: none;
-    color: rgb(18, 18, 18); /*LAB18だから！気付いてくれた人はサイコー！その２*/
-  }
-  button{
+    color: rgb(18, 18, 18);
+    /*LAB18だから！気付いてくれた人はサイコー！その２*/
+}
+
+button {
     border: none;
-  }
-  textarea{
+    font-family: "Kaisei Decol", serif;
+    font-size: 1rem;
+    font-style: normal;
+    cursor: pointer;
+}
+
+textarea {
     resize: none;
-  }
-  input{
-    height:24px;
-  }
-.form-group{
+}
+
+input {
+    height: 24px;
+}
+
+.form-group {
     margin: 5px;
 }
