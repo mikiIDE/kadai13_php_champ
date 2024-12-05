@@ -49,3 +49,9 @@ footer{
   textarea{
     resize: none;
   }
+  input{
+    height:24px;
+  }
+.form-group{
+    margin: 5px;
+}
