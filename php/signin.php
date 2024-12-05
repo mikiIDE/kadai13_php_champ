@@ -8,7 +8,7 @@ require_once __DIR__ . '/../inc/header.php';
         <form action="signin_act.php" method="post">
             <div class="form-group">
                 <label for="name">お　名　前：</label>
-                <input type="text" id="name" name="name" placeholder="64文字以内" required>
+                <input type="text" id="name" name="name" placeholder="64文字以内の全角" required>
             </div>
             <div class="form-group">
                 <label for="lid">ユーザーID：</label>

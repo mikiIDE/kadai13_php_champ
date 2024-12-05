@@ -13,6 +13,7 @@ project/（htdocs配下）
 ├── img/
 └── php/
    ├── index.php
+   ├── funcs.php
    ├── signin.php
    ├── signin_act.php
    ├── login_act.php
