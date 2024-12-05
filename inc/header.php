@@ -23,6 +23,12 @@ require_once __DIR__ . "/../php/funcs.php";
 </head>
 
 <body>
-    <header>
-G's LIFE QUEST
+    <!-- Header Start -->
+    <header class="site-header">
+        <div class="menu">
+            <button class="search-friends">友達を探す</button>
+        </div>
+        <div class="title">G's LIFE QUEST</div>
+        <button class="logout">ログアウト</button>
     </header>
+    <!-- Header End -->
