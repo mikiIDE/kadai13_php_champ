@@ -3,6 +3,30 @@
 require_once __DIR__ . '/../inc/header.php';
 ?>
 <main>
+    <!-- ポップアップ -->
+    <div id="popup-wrapper">
+        <div id="popup-inside">
+            <div id="close">x</div>
+            <div id="message">
+                <?php if (isset($_SESSION['success'])): ?>
+                    <div class="success" data-show-popup="true"> <!-- data属性を追加 -->
+                        <?php
+                        echo $_SESSION['success'];
+                        unset($_SESSION['success']);
+                        ?>
+                    <?php endif; ?>
+                    </div>
+                    <?php if (isset($_SESSION['error'])): ?>
+                        <div class="error" data-show-popup="true">
+                            <?php
+                            echo $_SESSION['error'];
+                            unset($_SESSION['error']);
+                            ?>
+                        </div>
+                    <?php endif; ?>
+            </div>
+        </div>
+    </div>
     <div class="menu-container">
         <p class="intro">モットーは「自分も大事に」</p>
         <p class="intro">日々の睡眠、食事、運動、学習の記録をつけて<br>
@@ -25,3 +49,6 @@ require_once __DIR__ . '/../inc/header.php';
 <?php
 require_once __DIR__ . '/../inc/footer.php';
 ?>
+<script src="../js/popup.js"></script>
+</body>
+</html>

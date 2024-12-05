@@ -4,5 +4,3 @@
         ©自分よしよしカンパニー 2024 All Rights reserved.
     </div>
 </footer>
-</body>
-</html>
