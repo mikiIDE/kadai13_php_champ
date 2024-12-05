@@ -4,3 +4,4 @@ schedule.txt
 composer.json
 composer.lock
 vendor/
+php/funcs.php

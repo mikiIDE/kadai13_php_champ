@@ -4,7 +4,7 @@
 ![](https://img.shields.io/badge/php-purple)
 
 # ①課題名
-PHP選手権提出用「Life Quest～自分よしよし～」
+PHP選手権提出用
 
 ## ②課題内容（どんな作品か）
 - 〇〇〇〇〇〇〇〇
