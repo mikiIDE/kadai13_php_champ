@@ -3,7 +3,7 @@
 session_start();
 require_once __DIR__ . "/../php/funcs.php";
 // ログイン状態の簡易チェック
-//$is_logged_in = isLoggedIn();
+$is_logged_in = isLoggedIn();
 
 //var_dump($_SESSION);  // デバッグ用＞セッションの中身を確認
 //var_dump($is_logged_in);  // デバッグ用＞ログイン状態を確認
@@ -25,10 +25,20 @@ require_once __DIR__ . "/../php/funcs.php";
 <body>
     <!-- Header Start -->
     <header class="site-header">
+    <?php if ($is_logged_in) : ?>
+        <!-- ログイン済みの場合 -->
         <div class="menu">
             <button class="search-friends">友達を探す</button>
         </div>
+        <?php endif; ?>
         <div class="title">G's LIFE QUEST</div>
-        <button class="logout">ログアウト</button>
+        <?php if ($is_logged_in) : ?>
+                    <!-- ログイン済みの場合 -->
+                    <form action="../php/logout.php" method="POST" style="display: inline;">
+                        <button type="submit" id="logout-btn" class="logout-btn">
+                            ログアウト
+                        </button>
+                    </form>
+                <?php endif; ?>
     </header>
     <!-- Header End -->

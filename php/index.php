@@ -2,7 +2,7 @@
 // index.php
 require_once __DIR__ . '/../inc/header.php';
 ?>
-<main>
+<main class="main">
     <!-- ポップアップ -->
     <div id="popup-wrapper">
         <div id="popup-inside">
