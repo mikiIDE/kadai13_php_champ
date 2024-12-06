@@ -92,6 +92,17 @@ td:nth-of-type(7) {
     top: 350px;
 }
 
+/* メインのヘルプ用 */
+.help {
+    position: fixed;
+    right: 25px;
+    top: 80px;
+}
+
+.help-s {
+    font-size: 0.5rem;
+}
+
 /* フッター */
 footer {
     /* position:fixed; */

@@ -121,6 +121,25 @@ for ($day = 1; $day <= $day_count; $day++, $youbi++) {
             ?>
         </table>
     </div>
+    <!-- 処理の可否についてのメッセージ -->
+    <div id="message">
+        <?php if (isset($_SESSION['success'])): ?>
+            <div class="success" data-show-popup="true"> <!-- data属性を追加 -->
+                <?php
+                echo $_SESSION['success'];
+                unset($_SESSION['success']);
+                ?>
+            <?php endif; ?>
+            </div>
+            <?php if (isset($_SESSION['error'])): ?>
+                <div class="error" data-show-popup="true">
+                    <?php
+                    echo $_SESSION['error'];
+                    unset($_SESSION['error']);
+                    ?>
+                </div>
+            <?php endif; ?>
+    </div>
     <div class="target">
         <div class="target-sleep">睡眠：時間</div>
         <div class="target-learn">学習：時間</div>
@@ -130,14 +149,15 @@ for ($day = 1; $day <= $day_count; $day++, $youbi++) {
             <div id="popup-inside">
                 <div id="close">x</div>
                 <div id="message">
-                    <form action="target_edit_act.php" method="post">
+                    日々の学習と睡眠の<br>目標時間を設定しよう！<br>（小数点も使えるよ）
+                    <form action="target_save_act.php" method="post">
                         <div class="form-group">
-                            <label for="sleep_hour">睡眠：</label>
-                            <input type="text" id="sleep_hour" name="sleep_hour" required>
+                            <label for="sleep_hour">睡眠時間（時間）：</label>
+                            <input type="number" id="sleep_hour" name="sleep_hour" step="0.1" min="0" max="24" required>
                         </div>
                         <div class="form-group">
-                            <label for="study_hour">学習：</label>
-                            <input type="password" id="study_hour" name="study_hour" required>
+                            <label for="study_hour">学習時間（時間）：</label>
+                            <input type="number" id="study_hour" name="study_hour" step="0.1" min="0" max="24" required>
                         </div>
                         <button type="submit" class="set_target">設定</button>
                     </form>
@@ -145,10 +165,12 @@ for ($day = 1; $day <= $day_count; $day++, $youbi++) {
             </div>
         </div>
     </div>
+    <button class="help"><a href="help.php">？ <span class="help_s">ヘルプ</span></a></button></div>
 </main>
 <?php
 require_once __DIR__ . '/../inc/footer.php';
 ?>
 <script src="../js/popup.js"></script>
 </body>
+
 </html>
