@@ -45,7 +45,7 @@ if($pw){
 
 }else{
   //Login失敗時の処理
-  $_SESSION["error"] = "ログインIDまたはパスワードが間違っています";
+  $_SESSION["error"] = "ログインIDまたは<br>パスワードが間違っています";
   redirect("index.php");
 }
 exit();

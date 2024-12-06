@@ -37,22 +37,14 @@ $today = date('Y-m-d');
 $html_title = date('Y年n月', $timestamp);
 
 // 前月・次月の年月を取得
-// 方法１：mktimeを使う mktime(hour,minute,second,month,day,year)
 $prev = date('Y-m', mktime(0, 0, 0, date('m', $timestamp) - 1, 1, date('Y', $timestamp)));
 $next = date('Y-m', mktime(0, 0, 0, date('m', $timestamp) + 1, 1, date('Y', $timestamp)));
-
-// 方法２：strtotimeを使う
-// $prev = date('Y-m', strtotime('-1 month', $timestamp));
-// $next = date('Y-m', strtotime('+1 month', $timestamp));
 
 // 該当月の日数を取得
 $day_count = date('t', $timestamp);
 
 // １日が何曜日か　0:日 1:月 2:火 ... 6:土
-// 方法１：mktimeを使う
 $youbi = date('w', mktime(0, 0, 0, date('m', $timestamp), 1, date('Y', $timestamp)));
-// 方法２
-// $youbi = date('w', $timestamp);
 
 // カレンダー作成の準備
 $weeks = [];
@@ -85,12 +77,12 @@ for ($day = 1; $day <= $day_count; $day++, $youbi++) {
     $week .= '<div class="date-cell">';
     $week .= '<div class="date-number">' . $day . '</div>';
 
-    if ($todo_count > 0) {
-        $week .= '<div class="todo-badge">';
-        $week .= '<span class="todo-icon">📝</span>' . $todo_count;
-        $week .= '</div>';
-    }
-    $week .= '</div>';
+    // if ($todo_count > 0) {
+    //     $week .= '<div class="todo-badge">';
+    //     $week .= '<span class="todo-icon">📝</span>' . $todo_count;
+    //     $week .= '</div>';
+    // }
+    // $week .= '</div>';
     // $week .= '</td>';
 
     // 週終わり、または、月終わりの場合
@@ -111,7 +103,7 @@ for ($day = 1; $day <= $day_count; $day++, $youbi++) {
 <main>
     <!-- カレンダーの表示 -->
     <div class="calender-container">
-        <h4 class="mb-4"><a href="?ym=<?= $prev ?>">&lt;</a><span class="mx-3"><?= $html_title ?></span><a href="?ym=<?= $next ?>">&gt;</a></h4>
+        <h4 class="mb-5"><a href="?ym=<?= $prev ?>">&lt;</a><span class="mx-3"><?= $html_title ?></span><a href="?ym=<?= $next ?>">&gt;</a></h4>
         <table class="table table-bordered">
             <tr>
                 <th>日</th>
@@ -129,9 +121,34 @@ for ($day = 1; $day <= $day_count; $day++, $youbi++) {
             ?>
         </table>
     </div>
+    <div class="target">
+        <div class="target-sleep">睡眠：時間</div>
+        <div class="target-learn">学習：時間</div>
+        <button class="target-btn">目標を登録/編集する</button>
+        <!-- ポップアップ -->
+        <div id="popup-wrapper">
+            <div id="popup-inside">
+                <div id="close">x</div>
+                <div id="message">
+                    <form action="target_edit_act.php" method="post">
+                        <div class="form-group">
+                            <label for="sleep_hour">睡眠：</label>
+                            <input type="text" id="sleep_hour" name="sleep_hour" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="study_hour">学習：</label>
+                            <input type="password" id="study_hour" name="study_hour" required>
+                        </div>
+                        <button type="submit" class="set_target">設定</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </main>
 <?php
 require_once __DIR__ . '/../inc/footer.php';
 ?>
+<script src="../js/popup.js"></script>
 </body>
 </html>
