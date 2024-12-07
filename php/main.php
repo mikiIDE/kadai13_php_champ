@@ -118,13 +118,7 @@ try {
 
 ?>
 <main>
-    <?php if ($is_logged_in) : ?>
-        <div class="greeting"><?= h($_SESSION["name"]) ?>さん、お疲れ様です！</div>
-    <?php endif; ?>
-    <div class="user-prof">
-    <img class="user_icon" src="../img/<?= h($user_data['profile_image'] ?? 'default-icon.png') ?>"  alt="ユーザーアイコン">
-    <button class="prof-setting"><a href="prof_setting.php">プロフィールを編集する</a></button>
-    </div>
+
     <!-- カレンダーの表示 -->
     <div class="calender-container">
         <h4 class="mb-5"><a href="?ym=<?= $prev ?>">&lt;</a><span class="mx-3"><?= $html_title ?></span><a href="?ym=<?= $next ?>">&gt;</a></h4>
@@ -190,6 +184,14 @@ try {
                 </div>
             </div>
         </div>
+    </div>
+    <?php if ($is_logged_in) : ?>
+        <div class="greeting"><?= h($_SESSION["name"]) ?>さん、お疲れ様です！</div>
+    <?php endif; ?>
+    <div class="user-prof">
+        <img class="user_icon" src="../img/<?= h($user_data['profile_image'] ?? 'default-icon.png') ?>" alt="ユーザーアイコン">
+        <button class="prof-setting"><a href="prof_setting.php">プロフィールを編集する</a></button>
+        <button class="record-today"><a href="record_today.php">今日を記録する</a></button>
     </div>
     <button class="help"><a href="help.php">？ <span class="help_s">ヘルプ</span></a></button></div>
 </main>
