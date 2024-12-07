@@ -38,6 +38,16 @@ main {
     margin-top:20px;
     font-weight: bold;
 }
+/* ユーザー関連 */
+.user_icon{
+    width:200px;
+    height:auto;
+    margin: 20px;
+}
+.user-prof{
+    display: flex;
+    flex-direction: column;
+}
 
 /* カレンダー用 */
 .calender-container {
