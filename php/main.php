@@ -99,10 +99,15 @@ for ($day = 1; $day <= $day_count; $day++, $youbi++) {
         $week = '';
     }
 }
-// ユーザーの目標時間を取得するSQL
-$sql = "SELECT daily_study_hours, daily_sleep_hours FROM user_goals WHERE user_id = :user_id";
+// ユーザー情報と目標時間を一度に取得
+$sql = "SELECT u.profile_image, g.daily_study_hours, g.daily_sleep_hours 
+        FROM user_info u 
+        LEFT JOIN user_goals g ON u.id = g.user_id -- 未設定でも画像取得は可能
+        WHERE u.id = :user_id";
 $stmt = $pdo->prepare($sql);
 $stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
+$stmt->execute();
+$user_data = $stmt->fetch();
 
 try {
     $stmt->execute();
@@ -117,7 +122,7 @@ try {
         <div class="greeting"><?= h($_SESSION["name"]) ?>さん、お疲れ様です！</div>
     <?php endif; ?>
     <div class="user-prof">
-    <img class="user_icon" src="../img/default-icon.png" alt="ユーザーアイコン">
+    <img class="user_icon" src="../img/<?= h($user_data['profile_image'] ?? 'default-icon.png') ?>"  alt="ユーザーアイコン">
     <button class="prof-setting"><a href="prof_setting.php">プロフィールを編集する</a></button>
     </div>
     <!-- カレンダーの表示 -->
@@ -141,8 +146,8 @@ try {
         </table>
     </div>
     <div class="target">
-        <div class="target-sleep">睡眠：<?php echo isset($goals['daily_sleep_hours']) ? h($goals['daily_sleep_hours']) . "時間" : '未設定'; ?></div>
-        <div class="target-learn">学習：<?php echo isset($goals['daily_study_hours']) ? h($goals['daily_study_hours']) . "時間" : '未設定'; ?></div>
+        <div class="target-sleep">睡眠：<?php echo isset($user_date['daily_sleep_hours']) ? h($user_date['daily_sleep_hours']) . "時間" : '未設定'; ?></div>
+        <div class="target-learn">学習：<?php echo isset($user_date['daily_study_hours']) ? h($user_date['daily_study_hours']) . "時間" : '未設定'; ?></div>
         <button class="target-btn">目標を登録/編集する</button>
         <!-- ポップアップ -->
         <div id="popup-wrapper">

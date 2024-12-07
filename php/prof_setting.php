@@ -13,11 +13,11 @@ $user_id = $_SESSION['user_id'];
 $pdo = db_conn();
 
 // データの確認
-$sql = "SELECT name, lid, profile_image FROM user_info WHERE user_id = :user_id";
-$stmt = $pdo->prepare($sql);
-$stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
-$stmt->execute();
-$user_info = $stmt->fetch(PDO::FETCH_ASSOC);
+$check_sql = "SELECT * FROM user_info WHERE id = :id";
+$check_stmt = $pdo->prepare($check_sql);
+$check_stmt->bindValue(':id', $user_id, PDO::PARAM_INT);
+$check_stmt->execute();
+$user_info = $check_stmt->fetch(PDO::FETCH_ASSOC); //ユーザー情報の取得
 ?>
 <main>
     <h4 class="prof-setting-title">プロフィール編集</h4>
@@ -33,11 +33,11 @@ $user_info = $stmt->fetch(PDO::FETCH_ASSOC);
         </div>    
     <div class="form-group">
             <label for="name">お　名　前：</label>
-            <input type="text" id="name" name="name" placeholder="<?php $_SESSION['user_name']?>" required>
+            <input type="text" id="name" name="name" value="<?= h($user_info['name']) ?>" required>
         </div>
         <div class="form-group">
             <label for="lid">ユーザーID：</label>
-            <input type="text" id="lid" name="lid" placeholder="<?php $_SESSION['user_id']?>" required>
+            <input type="text" id="lid" name="lid" value="<?= h($user_info['lid']) ?>" required>
         </div>
         <div class="form-group">
             <label for="lpw">パスワード確認：</label>

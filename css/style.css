@@ -49,6 +49,12 @@ main {
     flex-direction: column;
 }
 
+.current-profile-image{
+    width:200px;
+    height:auto;
+    margin: 20px;
+}
+
 /* カレンダー用 */
 .calender-container {
     position: fixed;
