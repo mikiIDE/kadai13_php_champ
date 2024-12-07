@@ -34,6 +34,11 @@ main {
     font-size: 1.2rem;
 }
 
+.greeting{
+    margin-top:20px;
+    font-weight: bold;
+}
+
 /* カレンダー用 */
 .calender-container {
     position: fixed;
@@ -83,6 +88,28 @@ td:nth-of-type(7) {
     top: 0;
     right: 5px;
     cursor: pointer;
+}
+
+.popup-content {
+    transition: display 0.3s ease;
+}
+
+.success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    padding: 15px;
+    border-radius: 4px;
+    margin: 10px 0;
+}
+
+.error {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    padding: 15px;
+    border-radius: 4px;
+    margin: 10px 0;
 }
 
 /* メインで見える目標用 */

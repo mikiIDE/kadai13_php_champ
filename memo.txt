@@ -1,7 +1,4 @@
 project/（htdocs配下）
-├── .env/
-│   ├── .env.local
-│   └── .env.sakura
 ├── sql/
 │   └── sql.sql
 ├── css/
@@ -10,6 +7,7 @@ project/（htdocs配下）
 │   ├── footer.php
 │   └── header.php
 ├── js/
+│   └──popup.js
 ├── img/
 └── php/
    ├── index.php

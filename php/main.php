@@ -99,8 +99,23 @@ for ($day = 1; $day <= $day_count; $day++, $youbi++) {
         $week = '';
     }
 }
+// ユーザーの目標時間を取得するSQL
+$sql = "SELECT daily_study_hours, daily_sleep_hours FROM user_goals WHERE user_id = :user_id";
+$stmt = $pdo->prepare($sql);
+$stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
+
+try {
+    $stmt->execute();
+    $goals = $stmt->fetch(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    error_log($e->getMessage());
+}
+
 ?>
 <main>
+    <?php if ($is_logged_in) : ?>
+        <div class="greeting"><?= h($_SESSION["name"]) ?>さん、お疲れ様です！</div>
+    <?php endif; ?>
     <!-- カレンダーの表示 -->
     <div class="calender-container">
         <h4 class="mb-5"><a href="?ym=<?= $prev ?>">&lt;</a><span class="mx-3"><?= $html_title ?></span><a href="?ym=<?= $next ?>">&gt;</a></h4>
@@ -121,46 +136,48 @@ for ($day = 1; $day <= $day_count; $day++, $youbi++) {
             ?>
         </table>
     </div>
-    <!-- 処理の可否についてのメッセージ -->
-    <div id="message">
-        <?php if (isset($_SESSION['success'])): ?>
-            <div class="success" data-show-popup="true"> <!-- data属性を追加 -->
-                <?php
-                echo $_SESSION['success'];
-                unset($_SESSION['success']);
-                ?>
-            <?php endif; ?>
-            </div>
-            <?php if (isset($_SESSION['error'])): ?>
-                <div class="error" data-show-popup="true">
-                    <?php
-                    echo $_SESSION['error'];
-                    unset($_SESSION['error']);
-                    ?>
-                </div>
-            <?php endif; ?>
-    </div>
     <div class="target">
-        <div class="target-sleep">睡眠：時間</div>
-        <div class="target-learn">学習：時間</div>
+        <div class="target-sleep">睡眠：<?php echo isset($goals['daily_sleep_hours']) ? h($goals['daily_sleep_hours']) . "時間" : '未設定'; ?></div>
+        <div class="target-learn">学習：<?php echo isset($goals['daily_study_hours']) ? h($goals['daily_study_hours']) . "時間" : '未設定'; ?></div>
         <button class="target-btn">目標を登録/編集する</button>
         <!-- ポップアップ -->
         <div id="popup-wrapper">
             <div id="popup-inside">
                 <div id="close">x</div>
-                <div id="message">
-                    日々の学習と睡眠の<br>目標時間を設定しよう！<br>（小数点も使えるよ）
-                    <form action="target_save_act.php" method="post">
-                        <div class="form-group">
-                            <label for="sleep_hour">睡眠時間（時間）：</label>
-                            <input type="number" id="sleep_hour" name="sleep_hour" step="0.1" min="0" max="24" required>
+                <div id="form-content" class="popup-content">
+                    <div id="set_message">
+                        日々の学習と睡眠の<br>目標時間を設定しよう！
+                        <form action="target_save_act.php" method="post">
+                            <div class="form-group">
+                                <label for="sleep_hour">睡眠時間：</label>
+                                <input type="number" id="sleep_hour" name="sleep_hour" step="0.1" min="0" max="24" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="study_hour">学習時間：</label>
+                                <input type="number" id="study_hour" name="study_hour" step="0.1" min="0" max="24" required>
+                            </div>
+                            <button type="submit" class="set_target">設定</button>
+                        </form>
+                    </div>
+                </div>
+                <!-- 処理の可否についてのメッセージ -->
+                <div id="message-content" class="popup-content" style="display:none;">
+                    <?php if (isset($_SESSION['success'])): ?>
+                        <div class="success" data-show-popup="true"> <!-- data属性を追加 -->
+                            <?php
+                            echo $_SESSION['success'];
+                            unset($_SESSION['success']);
+                            ?>
+                        <?php endif; ?>
                         </div>
-                        <div class="form-group">
-                            <label for="study_hour">学習時間（時間）：</label>
-                            <input type="number" id="study_hour" name="study_hour" step="0.1" min="0" max="24" required>
-                        </div>
-                        <button type="submit" class="set_target">設定</button>
-                    </form>
+                        <?php if (isset($_SESSION['error'])): ?>
+                            <div class="error" data-show-popup="true">
+                                <?php
+                                echo $_SESSION['error'];
+                                unset($_SESSION['error']);
+                                ?>
+                            </div>
+                        <?php endif; ?>
                 </div>
             </div>
         </div>
