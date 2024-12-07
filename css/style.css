@@ -153,6 +153,11 @@ label {
     display: inline-block;
     margin-right: 10px;
 }
+.date-header {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 1.2em;
+}
 
 /* メインのヘルプ用 */
 .help {
@@ -168,6 +173,7 @@ label {
 /* フッター */
 footer {
     /* position:fixed; */
+    margin-top:50px;
     bottom: 0;
     display: flex;
     justify-content: center;

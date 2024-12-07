@@ -199,6 +199,7 @@ try {
 require_once __DIR__ . '/../inc/footer.php';
 ?>
 <script src="../js/popup.js"></script>
+<script src="../js/calender.js"></script>
 </body>
 
 </html>

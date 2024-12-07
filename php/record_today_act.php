@@ -14,8 +14,8 @@ $sleep_start = $_POST['sleep_start'];
 $sleep_end = $_POST['sleep_end'];
 $sleep_quality = $_POST['sleep_quality'];
 $has_protein = $_POST['has_protein'];
-$has_protein = $_POST['has_carbo'];
-$has_protein = $_POST['has_vegetable'];
+$has_carbo = $_POST['has_carbo'];
+$has_vegetable = $_POST['has_vegetable'];
 $meal_quality = $_POST['meal_quality'];
 $exercise_over_30min = $_POST['exercise_over_30min'];
 $step_count = isset($_POST['step_count']) ? $_POST['step_count'] : 0;
@@ -72,14 +72,14 @@ function calculateScores($data) {
     // トランザクション開始
     $pdo->beginTransaction();
 
-    // 日付は現在の日付を使用
-    $today = date('Y-m-d');
+    // 日付
+    $record_date = $_POST['record_date'];  // フォームから送信された日付を使用
 
     // 既存のレコードを確認
     $check_sql = "SELECT id FROM daily_records WHERE user_id = :user_id AND record_date = :record_date LIMIT 1";
     $check_stmt = $pdo->prepare($check_sql);
     $check_stmt->bindValue(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);
-    $check_stmt->bindValue(':record_date', $today);
+    $check_stmt->bindValue(':record_date', $record_date);
     $check_stmt->execute();
     $existing_record = $check_stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -120,7 +120,7 @@ function calculateScores($data) {
     
     // パラメータのバインド
     $stmt->bindValue(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);
-    $stmt->bindValue(':record_date', $today);
+    $stmt->bindValue(':record_date', $record_date);
     $stmt->bindValue(':sleep_start', $sleep_start);
     $stmt->bindValue(':sleep_end', $sleep_end);
     $stmt->bindValue(':sleep_quality', $sleep_quality, PDO::PARAM_INT);
