@@ -1,4 +1,4 @@
-
+// record.js
 function toggleStepCount(show) {
     const stepCountGroup = document.getElementById('step-count-group');
     const stepCountInput = stepCountGroup.querySelector('input');

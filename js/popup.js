@@ -1,3 +1,4 @@
+// popup.js
 // ポップアップ用
 // HTMLの読み込み完了後に動くよう指定する
 document.addEventListener('DOMContentLoaded', () => {
