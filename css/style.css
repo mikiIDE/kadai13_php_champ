@@ -215,10 +215,6 @@ label {
     top: 80px;
 }
 
-.help-s {
-    font-size: 0.5rem;
-}
-
 /* フッター */
 footer {
     /* position:fixed; */
@@ -245,7 +241,7 @@ footer {
     padding: 0.3em 1em;
     border: none;
     border-radius: 5px;
-    background-color: #FFF323;
+    background-color: #FEEABC;
     color: #3d3b3b;
 }
 
@@ -324,3 +320,81 @@ textarea {
 input {
     height: 24px;
 }
+
+.wrapper {
+    width: 1000px;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+/* レスポンシブ */
+@media screen and (max-width: 750px) { /*画面サイズが750px以下になったとき*/
+    .calender-container {
+        position: fixed;
+        top: 500px;
+        margin: auto;
+    }
+    .target {
+        position: fixed;
+        top: 750px;
+        margin: auto;
+    }
+    .footer{
+        position: fixed;
+        bottom:0px;
+    }
+  }
+  @media screen and (max-width: 500px) { 
+    .site-header{
+        font-size: 1.2rem;
+    }
+    .menu {
+        margin-top:5px;
+    }
+    .title {
+        margin-top:5px;
+    }
+    .logout-btn{
+        margin-top:5px;
+    }
+    .greeting{
+        font-size: 0.9rem;
+    }
+    button.help {
+        font-size: 0.7rem;
+    }
+  }
+  @media screen and (max-width: 400px) { 
+    .site-header{
+        font-size: 0.8rem;
+    }
+    .menu {
+        font-size: 0.8rem;
+        margin-top:5px;
+    }
+    .title {
+        margin-top:5px;
+    }
+    button.logout-btn{
+        font-size: 0.8rem;
+        margin-top:5px;
+    }
+    .greeting{
+        font-size: 0.7rem;
+    }
+    button.help {
+        font-size: 0.5rem;
+    }
+    button.search-friends-btn{
+        font-size: 0.8rem;
+        margin-top:5px;
+    }
+    .no-achievement{
+        font-size: 0.7rem;
+    }
+  }
+  @media screen and (max-height: 900px){
+    .footer-message{
+        display: none;
+    }
+  }

@@ -117,7 +117,7 @@ try {
 }
 
 ?>
-<main>
+<main class="wrapper">
 
     <!-- カレンダーの表示 -->
     <div class="calender-container">
@@ -150,7 +150,7 @@ try {
                 <div id="form-content" class="popup-content">
                     <div id="set_message">
                         日々の学習と睡眠の<br>目標時間を設定しよう！
-                        <form action="target_save_act.php" method="post">
+                        <form id="target-form" action="target_save_act.php" method="post">
                             <div class="form-group">
                                 <label for="sleep_hours">睡眠時間：</label>
                                 <input type="number" id="sleep_hours" name="sleep_hours" step="0.1" min="0" max="24" required>
@@ -185,48 +185,49 @@ try {
             </div>
         </div>
     </div>
-    <?php if ($is_logged_in) : ?>
-        <div class="greeting"><?= h($_SESSION["name"]) ?>さん、お疲れ様です！</div>
-    <?php endif; ?>
-    <div class="user-prof">
-        <img class="user_icon" src="../img/<?= h($user_data['profile_image'] ?? 'default-icon.png') ?>" alt="ユーザーアイコン">
-        <button class="prof-setting-btn"><a href="prof_setting.php">プロフィールを編集する</a></button>
-        <button class="record-today-btn"><a href="record_today.php">今日を記録する</a></button>
-    </div>
-<?php
-// 直近の週の称号を取得
-$sql = "SELECT * FROM weekly_achievements 
+    <div class="responsive">
+        <?php if ($is_logged_in) : ?>
+            <div class="greeting"><?= h($_SESSION["name"]) ?>さん、お疲れ様です！</div>
+        <?php endif; ?>
+        <div class="user-prof">
+            <img class="user_icon" src="../img/<?= h($user_data['profile_image'] ?? 'default-icon.png') ?>" alt="ユーザーアイコン">
+            <button class="prof-setting-btn"><a href="prof_setting.php">プロフィールを編集する</a></button>
+            <button class="record-today-btn"><a href="record_today.php">今日を記録する</a></button>
+        </div>
+        <?php
+        // 直近の週の称号を取得
+        $sql = "SELECT * FROM weekly_achievements 
         WHERE user_id = :user_id 
         ORDER BY week_start_date DESC LIMIT 1";
-$stmt = $pdo->prepare($sql);
-$stmt->bindValue(':user_id', $user_id);
-$stmt->execute();
-$achievements = $stmt->fetch();
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindValue(':user_id', $user_id);
+        $stmt->execute();
+        $achievements = $stmt->fetch();
 
-// HTMLに表示セクションを追加
-if ($achievements) {
-    echo '<div class="achievements-section">';
-    // 週の期間を表示
-    $week_start = new DateTime($achievements['week_start_date']);
-    $week_end = new DateTime($achievements['week_end_date']);
-    echo '<div class="achievement-period">';
-    echo $week_start->format('n月j日') . '～' . $week_end->format('n月j日') . 'の称号';
-    echo '</div>';
-    
-    // 称号の表示
-    if ($achievements['early_riser_pro']) echo '<div class="achievement">早起きプロ 🌅</div>';
-    if ($achievements['nutrition_minister']) echo '<div class="achievement">栄養大臣 🍳</div>';
-    if ($achievements['active_natural']) echo '<div class="achievement">アクティブの申し子 🏃</div>';
-    if ($achievements['self_study_rocket']) echo '<div class="achievement">自走力ロケット 📚</div>';
-    echo '</div>';
-} else {
-    echo '<div class="achievements-section">';
-    echo '<div class="no-achievement">まだ称号はありません。1週間記録を続けてみましょう！</div>';
-    echo '</div>';
-}
-?>
+        // HTMLに表示セクションを追加
+        if ($achievements) {
+            echo '<div class="achievements-section">';
+            // 週の期間を表示
+            $week_start = new DateTime($achievements['week_start_date']);
+            $week_end = new DateTime($achievements['week_end_date']);
+            echo '<div class="achievement-period">';
+            echo $week_start->format('n月j日') . '～' . $week_end->format('n月j日') . 'の称号';
+            echo '</div>';
 
-    <button class="help"><a href="help.php">？ <span class="help_s">ヘルプ</span></a></button></div>
+            // 称号の表示
+            if ($achievements['early_riser_pro']) echo '<div class="achievement">早起きプロ 🌅</div>';
+            if ($achievements['nutrition_minister']) echo '<div class="achievement">栄養大臣 🍳</div>';
+            if ($achievements['active_natural']) echo '<div class="achievement">アクティブの申し子 🏃</div>';
+            if ($achievements['self_study_rocket']) echo '<div class="achievement">自走力ロケット 📚</div>';
+            echo '</div>';
+        } else {
+            echo '<div class="achievements-section">';
+            echo '<div class="no-achievement">まだ称号はありません。1週間記録を続けてみましょう！</div>';
+            echo '</div>';
+        }
+        ?>
+    </div>
+    <button class="help"><a href="help.php">？ ヘルプ</a></button>
 </main>
 <?php
 require_once __DIR__ . '/../inc/footer.php';
@@ -235,4 +236,5 @@ require_once __DIR__ . '/../inc/footer.php';
 <script src="../js/calender.js"></script>
 
 </body>
+
 </html>
