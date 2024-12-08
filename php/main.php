@@ -193,6 +193,39 @@ try {
         <button class="prof-setting"><a href="prof_setting.php">プロフィールを編集する</a></button>
         <button class="record-today"><a href="record_today.php">今日を記録する</a></button>
     </div>
+<?php
+// 直近の週の称号を取得
+$sql = "SELECT * FROM weekly_achievements 
+        WHERE user_id = :user_id 
+        ORDER BY week_start_date DESC LIMIT 1";
+$stmt = $pdo->prepare($sql);
+$stmt->bindValue(':user_id', $user_id);
+$stmt->execute();
+$achievements = $stmt->fetch();
+
+// HTMLに表示セクションを追加
+if ($achievements) {
+    echo '<div class="achievements-section">';
+    // 週の期間を表示
+    $week_start = new DateTime($achievements['week_start_date']);
+    $week_end = new DateTime($achievements['week_end_date']);
+    echo '<div class="achievement-period">';
+    echo $week_start->format('n月j日') . '～' . $week_end->format('n月j日') . 'の称号';
+    echo '</div>';
+    
+    // 称号の表示
+    if ($achievements['early_riser_pro']) echo '<div class="achievement">早起きプロ 🌅</div>';
+    if ($achievements['nutrition_minister']) echo '<div class="achievement">栄養大臣 🍳</div>';
+    if ($achievements['active_natural']) echo '<div class="achievement">アクティブの申し子 🏃</div>';
+    if ($achievements['self_study_rocket']) echo '<div class="achievement">自走力ロケット 📚</div>';
+    echo '</div>';
+} else {
+    echo '<div class="achievements-section">';
+    echo '<div class="no-achievement">まだ称号はありません。1週間記録を続けてみましょう！</div>';
+    echo '</div>';
+}
+?>
+
     <button class="help"><a href="help.php">？ <span class="help_s">ヘルプ</span></a></button></div>
 </main>
 <?php

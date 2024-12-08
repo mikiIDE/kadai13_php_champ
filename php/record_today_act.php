@@ -36,9 +36,16 @@ function calculateScores($data) {
     if ($sleep_duration >= 6 && $sleep_duration <= 8) {
         $sleep_score += 3;
     }
-    
     // 睡眠の質を加算
     $sleep_score += intval($data['sleep_quality']);
+
+    $study_score = 0;
+    if ($data['study_hours'] >= 6) {
+        $study_score = 5;
+    } else {
+        // 6時間未満の場合は比例配分（1時間につき0.83点）
+        $study_score = round(($data['study_hours'] / 6) * 5);
+    }
     
     // 食事スコアの計算（最大10点）
     $meal_score = 0;
@@ -62,10 +69,11 @@ function calculateScores($data) {
     return [
         'sleep_score' => $sleep_score,
         'meal_score' => $meal_score,
-        'exercise_score' => $exercise_score
+        'exercise_score' => $exercise_score,
+        'study_score' => $study_score
     ];
 }
-
+try{
     // スコアの計算
     $scores = calculateScores($_POST);
 
@@ -99,6 +107,7 @@ function calculateScores($data) {
             sleep_score = :sleep_score,
             meal_score = :meal_score,
             exercise_score = :exercise_score,
+            study_score = :study_score,
             updated_at = CURRENT_TIMESTAMP
             WHERE user_id = :user_id AND record_date = :record_date";
     } else {
@@ -107,12 +116,12 @@ function calculateScores($data) {
         user_id, record_date, sleep_start, sleep_end, sleep_quality,
         has_meat, has_fish, has_vegetable, has_carbo,
         exercise_over_30min, step_count, study_hours,
-        sleep_score, meal_score, exercise_score
+        sleep_score, meal_score, exercise_score,study_score
     ) VALUES (
         :user_id, :record_date, :sleep_start, :sleep_end, :sleep_quality,
         :has_protein, :has_protein, :has_vegetable, :has_carbo,
         :exercise_over_30min, :step_count, :study_hours,
-        :sleep_score, :meal_score, :exercise_score
+        :sleep_score, :meal_score, :exercise_score, :study_score
     )";
     }
     
@@ -130,6 +139,7 @@ function calculateScores($data) {
     $stmt->bindValue(':exercise_over_30min', $exercise_over_30min, PDO::PARAM_BOOL);
     $stmt->bindValue(':step_count', $step_count, PDO::PARAM_INT);
     $stmt->bindValue(':study_hours', $study_hours);
+    $stmt->bindValue(':study_score', $scores['study_score'], PDO::PARAM_INT);
     $stmt->bindValue(':sleep_score', $scores['sleep_score'], PDO::PARAM_INT);
     $stmt->bindValue(':meal_score', $scores['meal_score'], PDO::PARAM_INT);
     $stmt->bindValue(':exercise_score', $scores['exercise_score'], PDO::PARAM_INT);
@@ -137,10 +147,31 @@ function calculateScores($data) {
     // 実行
     $status = $stmt->execute();
 
-    if ($status) {
-        $pdo->commit();
-        $_SESSION['success_message'] = "記録を保存しました！";
-        redirect('main.php');
-    } else {
-        throw new Exception('データの保存に失敗しました。');
-    }
+    if ($status) {   
+    // 火曜日始まりの週の開始日を取得
+    $current_date = new DateTime($record_date);
+    $days_to_subtract = (($current_date->format('w') - 2 + 7) % 7);
+    $week_start = clone $current_date;
+    $week_start->modify("-{$days_to_subtract} days");
+
+    // デバッグ用
+    error_log("Week Start Date: " . $week_start->format('Y-m-d'));
+    
+    // 称号の計算と保存
+    require_once 'achievements.php';
+    $result = calculateWeeklyAchievements($pdo, $_SESSION['user_id'], $week_start->format('Y-m-d'));
+    
+    // デバッグ用
+    error_log("Achievement Calculation Result: " . ($result ? 'Success' : 'Failed'));
+    
+    $pdo->commit();
+    $_SESSION['success_message'] = "記録を保存しました！";
+    redirect('main.php');
+} else {
+    throw new Exception('データの保存に失敗しました。');
+}
+}catch (Exception $e) {
+$pdo->rollBack();
+$_SESSION['error_message'] = $e->getMessage();
+redirect('record_today.php');
+}

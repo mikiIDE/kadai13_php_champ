@@ -124,6 +124,35 @@ td:nth-of-type(7) {
     left: 20px;
     top: 350px;
 }
+/* 称号用 */
+.achievements-section {
+    margin: 20px 0;
+    padding: 15px;
+    border-radius: 8px;
+    background: #f8f9fa;
+}
+
+.achievement-period {
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.achievement {
+    display: inline-block;
+    margin: 5px;
+    padding: 8px 15px;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.no-achievement {
+    text-align: center;
+    color: #666;
+    padding: 10px;
+}
 
 /* 記録用フォームのCSS */
 .form-section {
