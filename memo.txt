@@ -10,20 +10,22 @@ project/（htdocs配下）
 │   └──popup.js
 ├── img/
 └── php/
+   ├── achievements.php
+   ├── help.php
    ├── index.php
    ├── funcs.php
    ├── signin.php
    ├── signin_act.php
    ├── login_act.php
    ├── main.php
-   ├── setting.php
-   ├── edit_setting.php
-   ├── delete.php
-   ├── search_friend.php
-   ├── add_friend.php
-   ├── logout-act.php
-   ├── statistics.php
-   └── add_title.php
+   ├── prof_serring_act.php
+   ├── prof_setting.php
+   ├── record_today_act.php
+   ├── record_today.php
+   ├── target_save.php
+   ├── logout.php
+   ├── 
+   └── 
 
 
 『G's Life Quest～presented by 自分よしよしカンパニー～』

@@ -13,6 +13,7 @@ header {
     background-color: #FFF323;
     height: 50px;
 }
+
 .site-header {
     font-size: 1.8rem;
     /*LAB18だから！気付いてくれた人はサイコー！その１*/
@@ -27,29 +28,32 @@ main {
     text-align: center;
     margin: auto;
 }
+
 .menu-container {
     margin-top: 50px;
     font-size: 1.2rem;
 }
-.greeting{
-    margin-top:20px;
+
+.greeting {
+    margin-top: 20px;
     font-weight: bold;
 }
 
 /* ユーザー関連 */
-.user_icon{
-    width:200px;
-    height:auto;
+.user_icon {
+    width: 200px;
+    height: auto;
     margin: 20px auto;
 }
-.user-prof{
+
+.user-prof {
     display: flex;
     flex-direction: column;
 }
 
-.current-profile-image{
-    width:200px;
-    height:auto;
+.current-profile-image {
+    width: 200px;
+    height: auto;
     margin: 20px;
 }
 
@@ -59,13 +63,16 @@ main {
     left: 20px;
     top: 50px;
 }
+
 .today {
     background: rgba(245, 213, 154, 0.6) !important;
 }
+
 th:nth-of-type(1),
 td:nth-of-type(1) {
     color: red;
 }
+
 th:nth-of-type(7),
 td:nth-of-type(7) {
     color: blue;
@@ -83,6 +90,7 @@ td:nth-of-type(7) {
     z-index: 9999;
     /* 追加 */
 }
+
 #popup-inside {
     text-align: center;
     width: 100%;
@@ -92,15 +100,18 @@ td:nth-of-type(7) {
     padding: 20px;
     position: relative;
 }
+
 #close {
     position: absolute;
     top: 0;
     right: 5px;
     cursor: pointer;
 }
+
 .popup-content {
     transition: display 0.3s ease;
 }
+
 .success {
     color: #155724;
     background-color: #d4edda;
@@ -109,6 +120,7 @@ td:nth-of-type(7) {
     border-radius: 4px;
     margin: 10px 0;
 }
+
 .error {
     color: #721c24;
     background-color: #f8d7da;
@@ -124,6 +136,7 @@ td:nth-of-type(7) {
     left: 20px;
     top: 350px;
 }
+
 /* 称号用 */
 .achievements-section {
     margin: 20px 0;
@@ -145,7 +158,7 @@ td:nth-of-type(7) {
     padding: 8px 15px;
     background: #fff;
     border-radius: 20px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .no-achievement {
@@ -161,27 +174,34 @@ td:nth-of-type(7) {
     border: 1px solid #ddd;
     border-radius: 8px;
 }
+
 .form-group {
     margin: 10px 0;
 }
+
 .radio-group {
     display: flex;
     gap: 20px;
     margin: 10px 0;
 }
+
 .quality-select {
     margin: 10px 0;
 }
+
 .step-input {
     display: none;
 }
+
 .step-input.visible {
     display: block;
 }
+
 label {
     display: inline-block;
     margin-right: 10px;
 }
+
 .date-header {
     text-align: center;
     margin: 20px 0;
@@ -202,10 +222,83 @@ label {
 /* フッター */
 footer {
     /* position:fixed; */
-    margin-top:50px;
+    margin-top: 50px;
     bottom: 0;
     display: flex;
     justify-content: center;
+}
+
+/* ボタン群 */
+.signin-btn {
+    align-items: center;
+    margin: 0 auto;
+    padding: 0.3em 1em;
+    border: none;
+    border-radius: 5px;
+    background-color: #FEEABC;
+    color: #3d3b3b;
+}
+
+.login-btn {
+    align-items: center;
+    margin: 0 auto;
+    padding: 0.3em 1em;
+    border: none;
+    border-radius: 5px;
+    background-color: #FFF323;
+    color: #3d3b3b;
+}
+
+.logout-btn {
+    align-items: center;
+    margin: 0 auto;
+    padding: 0.3em 1em;
+    border: none;
+    border-radius: 5px;
+    background-color: #ffffff;
+    color: #3d3b3b;
+}
+
+.search-friends-btn {
+    align-items: center;
+    margin: 0 auto;
+    padding: 0.3em 1em;
+    border: none;
+    border-radius: 5px;
+    background-color: #ffffff;
+    color: #3d3b3b;
+    cursor: not-allowed;
+}
+
+.target-btn {
+    align-items: center;
+    margin: 0 auto;
+    padding: 0.3em 1em;
+    border: none;
+    border-radius: 5px;
+    background-color: #FEEABC;
+    color: #3d3b3b;
+}
+
+.prof-setting-btn {
+    font-size: 0.7rem;
+    align-items: center;
+    margin: 10px auto;
+    padding: 0.3em 1em;
+    border: none;
+    border-radius: 5px;
+    background-color: #e3e3e3;
+    color: #3d3b3b;
+}
+
+.record-today-btn {
+    align-items: center;
+    margin: 10px auto;
+    padding: 0.3em 1em;
+    border: none;
+    border-radius: 5px;
+    background-color: #FEEABC;
+    color: #3d3b3b;
 }
 
 

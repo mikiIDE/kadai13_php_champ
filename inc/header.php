@@ -28,7 +28,7 @@ $is_logged_in = isLoggedIn();
     <?php if ($is_logged_in) : ?>
         <!-- ログイン済みの場合 -->
         <div class="menu">
-            <button class="search-friends">友達を探す</button>
+            <button class="search-friends-btn">友達を探す</button>
         </div>
         <?php endif; ?>
         <div class="title"><a href="main.php">G's LIFE QUEST</a></div>

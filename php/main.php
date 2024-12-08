@@ -159,7 +159,7 @@ try {
                                 <label for="study_hours">学習時間：</label>
                                 <input type="number" id="study_hours" name="study_hours" step="0.1" min="0" max="24" required>
                             </div>
-                            <button type="submit" class="set_target">設定</button>
+                            <button type="submit" class="set-target-btn">設定</button>
                         </form>
                     </div>
                 </div>
@@ -190,8 +190,8 @@ try {
     <?php endif; ?>
     <div class="user-prof">
         <img class="user_icon" src="../img/<?= h($user_data['profile_image'] ?? 'default-icon.png') ?>" alt="ユーザーアイコン">
-        <button class="prof-setting"><a href="prof_setting.php">プロフィールを編集する</a></button>
-        <button class="record-today"><a href="record_today.php">今日を記録する</a></button>
+        <button class="prof-setting-btn"><a href="prof_setting.php">プロフィールを編集する</a></button>
+        <button class="record-today-btn"><a href="record_today.php">今日を記録する</a></button>
     </div>
 <?php
 // 直近の週の称号を取得
@@ -233,6 +233,6 @@ require_once __DIR__ . '/../inc/footer.php';
 ?>
 <script src="../js/popup.js"></script>
 <script src="../js/calender.js"></script>
-</body>
 
+</body>
 </html>
