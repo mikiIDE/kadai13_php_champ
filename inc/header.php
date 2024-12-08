@@ -31,7 +31,7 @@ $is_logged_in = isLoggedIn();
             <button class="search-friends">友達を探す</button>
         </div>
         <?php endif; ?>
-        <div class="title">G's LIFE QUEST</div>
+        <div class="title"><a href="main.php">G's LIFE QUEST</a></div>
         <?php if ($is_logged_in) : ?>
                     <!-- ログイン済みの場合 -->
                     <form action="../php/logout.php" method="POST" style="display: inline;">

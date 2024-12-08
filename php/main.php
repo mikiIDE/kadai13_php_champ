@@ -140,8 +140,8 @@ try {
         </table>
     </div>
     <div class="target">
-        <div class="target-sleep">睡眠：<?php echo isset($user_date['daily_sleep_hours']) ? h($user_date['daily_sleep_hours']) . "時間" : '未設定'; ?></div>
-        <div class="target-learn">学習：<?php echo isset($user_date['daily_study_hours']) ? h($user_date['daily_study_hours']) . "時間" : '未設定'; ?></div>
+        <div class="target-sleep">睡眠：<?php echo isset($user_data['daily_sleep_hours']) ? h($user_data['daily_sleep_hours']) . "時間" : '未設定'; ?></div>
+        <div class="target-learn">学習：<?php echo isset($user_data['daily_study_hours']) ? h($user_data['daily_study_hours']) . "時間" : '未設定'; ?></div>
         <button class="target-btn">目標を登録/編集する</button>
         <!-- ポップアップ -->
         <div id="popup-wrapper">
@@ -152,12 +152,12 @@ try {
                         日々の学習と睡眠の<br>目標時間を設定しよう！
                         <form action="target_save_act.php" method="post">
                             <div class="form-group">
-                                <label for="sleep_hour">睡眠時間：</label>
-                                <input type="number" id="sleep_hour" name="sleep_hour" step="0.1" min="0" max="24" required>
+                                <label for="sleep_hours">睡眠時間：</label>
+                                <input type="number" id="sleep_hours" name="sleep_hours" step="0.1" min="0" max="24" required>
                             </div>
                             <div class="form-group">
-                                <label for="study_hour">学習時間：</label>
-                                <input type="number" id="study_hour" name="study_hour" step="0.1" min="0" max="24" required>
+                                <label for="study_hours">学習時間：</label>
+                                <input type="number" id="study_hours" name="study_hours" step="0.1" min="0" max="24" required>
                             </div>
                             <button type="submit" class="set_target">設定</button>
                         </form>
