@@ -23,7 +23,7 @@ $user_info = $check_stmt->fetch(PDO::FETCH_ASSOC); //ユーザー情報の取得
     <h4 class="prof-setting-title">退会手続き</h4>
     <p><?= h($_SESSION["name"]) ?>さん</p>
     <p>本当に退会しますか？</p>
-    <p>※「退会」を押すと取り消しできません※</p>
+    <p class="alert">※「退会」を押すと取り消しできません※</p>
     <form action="delete_act.php" method="post">
         <div class="form-group">
             <label for="lpw">パスワード確認：</label>
@@ -33,9 +33,26 @@ $user_info = $check_stmt->fetch(PDO::FETCH_ASSOC); //ユーザー情報の取得
             <button type="submit" class="delete-btn">退会</button>
             <button class="back"><a href="main.php">戻る</a></button>
         </div>
+        <!-- ポップアップ （退会処理時にエラーが起きた場合表示）-->
+        <div id="popup-wrapper">
+            <div id="popup-inside">
+                <div id="close">x</div>
+                <div id="message">
+                    <?php if (isset($_SESSION['error'])): ?>
+                        <div class="error" data-show-popup="true">
+                            <?php
+                            echo $_SESSION['error'];
+                            unset($_SESSION['error']);
+                            ?>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
 </main>
 <?php
 require_once __DIR__ . '/../inc/footer.php';
 ?>
 </body>
+
 </html>

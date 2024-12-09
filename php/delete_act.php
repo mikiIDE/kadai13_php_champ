@@ -30,6 +30,13 @@ try{
 //トランザクション開始
 $pdo->beginTransaction();
 
+//※実装出来たら！
+//フレンド関係の削除
+// $delete_friends_sql = "DELETE FROM friendships WHERE user_id = :user_id OR friend_id = :user_id";
+// $friends_stmt = $pdo->prepare($delete_friends_sql);
+// $friends_stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
+// $friends_stmt->execute();
+
  // 週間称号の削除
  $delete_achievements_sql = "DELETE FROM weekly_achievements WHERE user_id = :user_id";
  $achievements_stmt = $pdo->prepare($delete_achievements_sql);
@@ -57,16 +64,21 @@ $pdo->beginTransaction();
  // トランザクションのコミット
  $pdo->commit();
 
+ $message = "退会手続き完了！<br>また使ってね";
+
 // セッションを破棄
-session_unset();
+$_SESSION = array();
+if(isset($_COOKIE[session_name()])){
+    setcookie(session_name(), '', time()-42000, "/");
+}
 session_destroy();
 
 // 退会処理後の表示
 session_start();
-$_SESSION['success'] = "退会手続き完了！<br>また使ってね";
+$_SESSION['success'] = $message;
     redirect("index.php");  // ログイン画面へ遷移
 } catch(Exception $e){
     $pdo->rollBack();
-    $_SESSION["error"] = "退会処理中にエラーが発生しました";
+    $_SESSION["error"] = "退会処理中にエラーが<br>発生しました";
     redirect('delete_confirm.php');
 }

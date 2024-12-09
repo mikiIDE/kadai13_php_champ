@@ -7,24 +7,26 @@ require_once __DIR__ . '/../inc/header.php';
     <div id="popup-wrapper">
         <div id="popup-inside">
             <div id="close">x</div>
-            <div id="message">
+            <div id="message-content">
                 <?php if (isset($_SESSION['success'])): ?>
                     <div class="success" data-show-popup="true"> <!-- data属性を追加 -->
                         <?php
                         echo $_SESSION['success'];
                         unset($_SESSION['success']);
                         ?>
-                    <?php endif; ?>
                     </div>
-                    <?php if (isset($_SESSION['error'])): ?>
-                        <div class="error" data-show-popup="true">
-                            <?php
-                            echo $_SESSION['error'];
-                            unset($_SESSION['error']);
-                            ?>
-                        </div>
-                    <?php endif; ?>
+                <?php endif; ?>
+
+                <?php if (isset($_SESSION['error'])): ?>
+                    <div class="error" data-show-popup="true">
+                        <?php
+                        echo $_SESSION['error'];
+                        unset($_SESSION['error']);
+                        ?>
+                    </div>
+                <?php endif; ?>
             </div>
+            <div id="form-content" style="display: none;"></div>
         </div>
     </div>
     <div class="menu-container">
@@ -51,4 +53,5 @@ require_once __DIR__ . '/../inc/footer.php';
 ?>
 <script src="../js/popup.js"></script>
 </body>
+
 </html>
