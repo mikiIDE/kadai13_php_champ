@@ -214,6 +214,14 @@ label {
     right: 25px;
     top: 80px;
 }
+/* 退会用 */
+.delete-account-info{
+    font-size: 1rem;
+    margin-top:50px;
+}
+.buttons{
+    gap:40px;
+}
 
 /* フッター */
 footer {
@@ -294,6 +302,15 @@ footer {
     border: none;
     border-radius: 5px;
     background-color: #FEEABC;
+    color: #3d3b3b;
+}
+.delete-account-btn{
+    margin-top:10px;
+    font-size: 0.7rem;
+    padding: 0.3em 1em;
+    border: none;
+    border-radius: 5px;
+    background-color: #fd93939f;
     color: #3d3b3b;
 }
 
@@ -393,7 +410,7 @@ input {
         font-size: 0.7rem;
     }
   }
-  @media screen and (max-height: 900px){
+  @media screen and (max-height: 400px){
     .footer-message{
         display: none;
     }

@@ -24,8 +24,8 @@ project/（htdocs配下）
    ├── record_today.php
    ├── target_save.php
    ├── logout.php
-   ├── 
-   └── 
+   ├── delete_confirm.php
+   └── delete_act.php
 
 
 『G's Life Quest～presented by 自分よしよしカンパニー～』

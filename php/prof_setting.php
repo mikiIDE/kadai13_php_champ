@@ -21,7 +21,7 @@ $user_info = $check_stmt->fetch(PDO::FETCH_ASSOC); //ユーザー情報の取得
 ?>
 <main>
     <h4 class="prof-setting-title">プロフィール編集</h4>
-    <form action="prof_setting_act.php" method="post" enctype="multipart/form-data">
+    <form action="prof_setting_act.php" method="post" enctype="multipart/form-data"> <!--enctype="multipart/form-dataによって画像データもOK -->
     <div class="profile-image-section">
             <img src="../img/<?= h($user_info['profile_image'] ?? 'default-icon.png') ?>" 
                  alt="プロフィール画像" 
@@ -46,7 +46,8 @@ $user_info = $check_stmt->fetch(PDO::FETCH_ASSOC); //ユーザー情報の取得
         <button type="submit" class="edit_prof">編集完了</button>
     </form>
     </div>
-
+   <p class="delete-account-info">↓　退会をご希望の場合はこちらから　↓</p>
+<button class="delete-account-btn"><a href="delete_confirm.php">退会手続きをする</a></button>
 </main>
 <?php
 require_once __DIR__ . '/../inc/footer.php';

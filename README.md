@@ -30,5 +30,5 @@ PHP選手権提出用
 ## ⑦フリー項目（感想、シェアしたいこと等なんでも）
 - [感想]
 - [参考記事]
-  - 1. [URLをここに記入]
-  - 2. [URLをここに記入]
+  - 1. [https://jp-seemore.com/web/6064/#toc4]　「PHPトランザクションをマスター！初心者向けの5つのステップ」
+  - 2. [https://codeforfun.jp/php-how-to-use-transaction/]　「【PHP】トランザクションの書き方」
