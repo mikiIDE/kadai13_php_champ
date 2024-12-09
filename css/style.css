@@ -307,6 +307,29 @@ footer {
     color:#721c24
 }
 
+/* ヘルプページ用 */
+.help-img{
+    width: 500px;
+}
+.help-img:hover{
+    transform: translateY(-5px);
+}
+.help-info{
+    margin:50px auto;
+    border: solid 3px #6091d3;
+    border-radius: 10px;
+    padding: 0.5em 1em;
+}
+.achievements-info{
+    line-height: 1.6em;
+}
+.nutri{
+    margin:10px auto;
+}
+.self{
+    margin:10px auto;
+}
+
 /* 全体に適用 */
 a {
     text-decoration: none;

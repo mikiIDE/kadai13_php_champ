@@ -77,14 +77,6 @@ for ($day = 1; $day <= $day_count; $day++, $youbi++) {
     $week .= '<div class="date-cell">';
     $week .= '<div class="date-number">' . $day . '</div>';
 
-    // if ($todo_count > 0) {
-    //     $week .= '<div class="todo-badge">';
-    //     $week .= '<span class="todo-icon">📝</span>' . $todo_count;
-    //     $week .= '</div>';
-    // }
-    // $week .= '</div>';
-    // $week .= '</td>';
-
     // 週終わり、または、月終わりの場合
     if ($youbi % 7 == 6 || $day == $day_count) {
         if ($day == $day_count) {
