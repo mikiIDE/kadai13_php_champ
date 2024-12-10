@@ -44,9 +44,9 @@ function calculateWeeklyAchievements($pdo, $user_id, $week_start_date)
     //称号の判定（記録がある日のみで計算する場合）
     $achievements = [
         "early_riser_pro" => ($early_riser_count >= 4),
-        "nutrition_minister" => ($days_recorded > 0 && ($total_meal_score / ($days_recorded * 10)) >= 0.8),
-        "active_natural" => ($days_recorded > 0 && ($total_exercise_score / ($days_recorded * 5)) >= 0.8),
-        "self_study_rocket" => ($days_recorded > 0 && ($total_study_score / ($days_recorded * 5)) >= 6)
+        "nutrition_minister" => ($days_recorded > 0 && ($total_meal_score / ($days_recorded * 10)) >= 0.6),
+        "active_natural" => ($days_recorded > 0 && ($total_exercise_score / ($days_recorded * 10)) >= 0.6),
+        "self_study_rocket" => ($days_recorded > 0 && ($total_study_score / ($days_recorded * 10)) >= 0.6)
     ];
 
     //DBへ保存
