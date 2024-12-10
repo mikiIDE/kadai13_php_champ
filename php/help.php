@@ -40,10 +40,10 @@ if (!isset($_SESSION['chk_ssid']) || !isset($_SESSION['user_id'])) {
             <img id="help10" class="help-img" src="../img/help10.png" alt="ページの説明">
             <p>以下の指標を達成した場合、その週の称号が画面に表示されます</p>
             <div class="achievements-info">
-            <div class="getup">早起きプロ 🌅：<br>6時前の起床が累計4日以上</div>
-            <div class="nutri">栄養大臣 🍳；<br>食事スコア80%以上</div>
-            <div class="active">アクティブの申し子 🏃：<br>運動スコア80%以上</div>
-            <div class="self">自走力ロケット 📚：<br>学習スコア80%以上</div>
+                <div class="getup">早起きプロ 🌅：<br>6時前の起床が累計4日以上</div>
+                <div class="nutri">栄養大臣 🍳；<br>食事スコア60%以上</div>
+                <div class="active">アクティブの申し子 🏃：<br>運動スコア60%以上</div>
+                <div class="self">自走力ロケット 📚：<br>学習スコア60%以上</div>
             </div>
         </div>
         <button class="back"><a href="main.php">戻る</a></button>
